@@ -1,0 +1,189 @@
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll bg-warning">
+       <div id="sidebar-menu" class="sidebar-menu">  
+        {% if user.user_type == '1' %}
+         <ul>
+            <li class="menu-title">
+               <div class="bg-warning">
+                     <a href="index.html" class="logo m-5">
+                     <img src="/{{user.profile_pic}}" alt="User Image" class="avatar-img rounded-circle" width="100" height="100">      
+                     </a>                            
+                  <div class="top-nav-search">
+                     <h4 class="text-dark"><strong></strong><span>({{user.first_name}} {{ user.last_name }})</span>&nbsp;</h4>
+                  </div>
+               </div>
+            </li>
+             
+            <li class="">
+               <a href="/{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span><h4 class="text-info">Admin Dashboard</h4></span></a>
+            </li>
+            <li class="submenu">
+               <a href="#"><i class="fas fa-user-graduate"></i><span class="text-dark"> Miscellaneous</span><span class="menu-arrow "></span></a>
+                  <ul>                        
+                     <li><a href="{% url 'add_grade' %}">Add Grade</a></li>
+                     <li><a href="{% url 'view_grade' %}">View Grade</a></li>
+                     <li><a href="{% url 'add_year' %}">Add Year</a></li>
+                     <li><a href="{% url 'view_year' %}">View Year</a></li>
+                     <li><a href="{% url 'add_month' %}">Add Month</a></li>
+                     <li><a href="{% url 'view_month' %}">View Month</a></li>                     
+                  </ul>
+            </li>
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Management</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'add_mgmt' %}">Add Management </a></li>
+                     <li><a href="{% url 'view_mgmt' %}">View Management </a></li>             
+                  </ul>
+            </li>
+            <li class="submenu ">
+               <a href="#"><i class="fa fa-graduation-cap"></i> <span class="text-dark"> Staff</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'add_staff' %}">Add Staff</a></li>
+                     <li><a href="{% url 'view_staff' %}">View Staff</a></li>          
+                  </ul>
+            </li>
+            <li class="submenu  ">
+               <a href="#"><i class="fas fa-book-reader"></i> <span class="text-dark"> Salary</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'add_mgmt_salary' %}">Add Mgmt Salary</a></li>
+                     <li><a href="{% url 'add_staff_salary' %}">Add Staff Salary</a></li>
+                     <li><a href="">Salary Slip</a></li>               
+               </ul>
+            </li>
+            <li class="submenu  ">
+               <a href="#"><i class="fa fa-bell"></i> <span class="text-dark"> Send Notification</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'mgmt_send_notification' %}">Send Mgmt Notification</a></li>
+                     <li><a href="{% url 'staff_send_notification' %}">Send Staff Notification</a></li>                 
+                  </ul>
+            </li>
+            <li class="submenu  ">
+               <a href="#"><i class="fas fa-comments"></i> <span class="text-dark"> Send Feedback</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'mgmt_feedback_reply' %}">Send Mgmt Feedback</a></li>
+                     <li><a href="{% url 'staff_feedback_reply' %}">Send Staff Feedback</a></li>                 
+                  </ul>
+            </li>
+            <li class="submenu  ">
+               <a href="#"><i class="fas fa-envelope"></i> <span class="text-dark"> Leave Applicationns</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'mgmt_leave_view' %}"> Mgmt Leave Applicationns</a></li>
+                     <li><a href="{% url 'staff_leave_view' %}"> Staff Leave Applicationns</a></li>                 
+                  </ul>
+            </li>                      
+            <li><i class=""></i>
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span class="text-dark">Logout</span></a>
+            </li>
+         </ul>
+          {% elif user.user_type == '2' %}
+         <ul>
+            <li class="menu-title">
+               <div class="bg-warning">
+                     <a href="index.html" class="logo m-5">
+                     <img src="/{{user.profile_pic}}" alt="User Image" class="avatar-img rounded-circle" width="100" height="100">      
+                     </a>                            
+                  <div class="top-nav-search">
+                     <h4 class="text-dark"><strong></strong><span>({{user.first_name}} {{ user.last_name }})</span>&nbsp;</h4>
+                  </div>
+               </div>
+            </li>
+            
+            <li class="">
+               <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span><h4 class="text-info">Mgmt. Dashboard</h4></span></a>
+            </li>
+            
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Product Detail</span> <span class="menu-arrow"></span></a>     
+                  <ul>
+                     <li><a href="{% url 'add_product' %}">Add Product </a></li>
+                     <li><a href="{% url 'view_product' %}">View Product </a></li>
+                  </ul>
+            </li>
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Suppliers Detail</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'add_supplier' %}">Add Supplier </a></li>
+                     <li><a href="{% url 'view_supplier' %}">View Supplier </a></li>
+                  </ul>
+            </li>
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Purchase Detail</span> <span class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'add_purchase' %}">Add Purchase </a></li>
+                     <li><a href="{% url 'view_purchase' %}">View Purchase </a></li>
+                  </ul>
+            </li>
+
+            <li class="">
+               <a href=""><i class="fas fa-calendar-alt"></i> <span class="text-dark">Take Attendance</span></a>
+            </li>
+         
+            <li class="">
+               <a href=""><i class="fas fa-calendar-alt"></i> <span class="text-dark">View/Update Attendance</span></a>
+            </li>
+      
+            <li class="">
+               <a href="{% url 'mgmt_leave' %}"><i class="fas fa-envelope-open"></i> <span class="text-dark">Apply for Leave</span></a>
+            </li>
+
+            <li class="">
+               <a href="{% url 'mgmt_feedback' %}"><i class="fas fa-comment"></i> <span class="text-dark">Send Feedback</span></a>
+            </li>
+            <li class="">
+               <a href="{% url 'notification' %}"><i class="fas fa-bell"></i> <span class="text-dark">Notification</span></a>
+            </li>
+            <li><i class=""></i>
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span class="text-dark">Logout</span></a>
+            </li>
+       
+            {%  else  %}
+         <ul>
+            <li class="menu-title">
+               <div class="bg-warning">
+                  <a href="index.html" class="logo m-5">
+                     <img src="/{{user.profile_pic}}" alt="User Image" class="avatar-img rounded-circle" width="100" height="100">      
+                  </a>
+               <div/>
+               <div class="top-nav-search">
+                  <h4 class="text-dark"><strong></strong><span>({{user.first_name}} {{ user.last_name }})</span>&nbsp;</h4>
+               </div>
+            </li>
+            
+            <li class="">
+               <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span><h3 class="text-info">Staff Dashboard</h3></span></a>
+            </li>
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Sales</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="">Add Sales </a></li>
+                  <li><a href="">Generate Slip </a></li>
+               </ul>
+            </li>
+            <li class="submenu  "">
+               <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span class="text-dark"> Generate Bill</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="">Total Sales </a></li>
+                  <li><a href="">Generate Bill </a></li>
+               </ul>
+            </li>
+            <li class="">
+               <a href=""><i class="fas fa-calendar-alt"></i> <span class="text-dark">View Attendance</span></a>
+            </li>           
+            <li class="">
+               <a href="{% url 'staff_apply_leave' %}"><i class="fa fa-pray" aria-hidden="true"></i><span class="text-dark">Apply for Leave</span></a>
+            </li>
+            <li class="">
+               <a href="{% url 'staff_feedback' %}"><i class="fa fa-comment" aria-hidden="true"></i><span class="text-dark">Send Feedback</span></a>
+            </li>
+            <li class="">
+               <a href="{% url 'notifications' %}"><i class="fa fa-bell" aria-hidden="true"></i><span class="text-dark">Notifications</span></a>
+            </li>
+            <li class="">
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i><span class="text-dark">Logout</span></a>
+            </li>           
+         </ul>
+          {% endif %}        
+       </div>
+    </div>
+ </div>

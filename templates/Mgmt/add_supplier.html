@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if (document.signup.pwd.value!=document.signup.cpwd.value)
+        {
+            alert('Password and Repeat Password fields does not match.');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="card shadow ">
+    <div class="card-body m-3">
+      <h1 class="text-center text-danger" style="border-top: 5px solid red; border-bottom: 5px solid red;">Add Supplier</h1>               
+        <div class="container-fluid">
+         <form method="post" action="{% url 'add_supplier' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               {% include 'includes/message.html' %}
+                  <div class="form-row">                     
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Supplier :</label>
+                           <input type="text" class="form-control bg-primary" name="supplier_name" placeholder="Write Supplier name here." required>
+                        </div>
+                     </div> 
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Company :</label>
+                           <input type="text" class="form-control bg-primary" name="supplier_company" placeholder="Write Company name here." required>
+                        </div>
+                     </div> 
+                     
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Mobile :</label>
+                           <input type="text" class="form-control bg-primary" name="supplier_mobile" placeholder="Write 10 Mobile No. here." required>
+                        </div>
+                     </div> 
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Email :</label>
+                           <input type="text" class="form-control bg-primary" name="supplier_email" placeholder="Write Email Address here." required>
+                        </div>
+                     </div>                                      
+                     <div class="col-sm-6">
+                        <label>Status :</label>
+                           <select class="form-control bg-primary" name="supplier_status" required>
+                              <option>Active</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                           </select>
+                     </div> 
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Address :</label>
+                           <textarea class="form-control bg-primary" name="supplier_address" placeholder="Enter Address" required></textarea>                       
+                        </div>
+                     </div>                     
+                                                           
+                </div>                
+                <input type="submit" value="Add Supplier"  class="col-sm-12 btn btn-primary my-3">            
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

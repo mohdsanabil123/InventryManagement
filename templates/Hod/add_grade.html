@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if (document.signup.pwd.value!=document.signup.cpwd.value)
+        {
+            alert('Password and Repeat Password fields does not match.');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="card shadow ">
+    <div class="card-body m-3">
+      <h1 class="text-center text-danger" style="border-top: 5px solid red; border-bottom: 5px solid red;">Add Grade</h1>               
+        <div class="container-fluid">
+         <form method="post" action="{% url 'add_grade' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               {% include 'includes/message.html' %}
+                  <div class="form-row">                     
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Grade :</label>
+                           <input type="text" class="form-control bg-primary" name="grade_name" placeholder="Write Grade here." required>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-3">
+                        <div class="form-group">
+                           <label>Salary :</label>
+                           <input type="text" class="form-control bg-primary" name="grade_salary" placeholder="Write Salary here." required>
+                        </div>
+                     </div>
+                     
+                     <div class="col-sm-3">
+                        <label>Status :</label>
+                           <select class="form-control bg-primary" name="grade_status" required>
+                              <option>Active</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                           </select>
+                     </div>             
+                          
+                </div>
+                
+                <input type="submit" value="Add Grade"  class="col-sm-12 btn btn-primary my-3">
+            
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

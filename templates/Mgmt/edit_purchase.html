@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row card shadow ">
+   <div class="col-sm-12 m-3">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_purchase' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h1 class="form-title text-danger"><span>Edit Purchase</span></h1>
+               </div>
+               {% include 'includes/message.html' %}
+               <div class="form-row">
+                  <div class="col-sm-6">
+                     <label class="text-danger">Supplier : *(Compulsary)</label>
+                        <select class="form-control bg-warning text-dark" name="supplier_id" required>
+                           <option">Supplier </option>
+                            {% for i in supplier %}
+                           <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>   
+                  </div>                                
+                  <div class="col-sm-6">
+                     <label class="text-danger">Product : *(Compulsary)</label>
+                        <select class="form-control bg-warning text-dark" name="product_id" required>
+                           <option">Product </option>
+                            {% for i in product %}
+                           <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>   
+                  </div>                  
+               
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Purch_Price :</label>
+                     <input type="text" class="form-control bg-primary" name="purc_price" value="{% for i in purchase %}{{i.purc_price}} {% endfor %}">
+                  </div>
+               </div>              
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Purch_Qty :</label>
+                     <input type="text" class="form-control bg-primary" name="purc_quantity" value="{% for i in purchase %}{{i.purc_quantity}} {% endfor %}">
+                  </div>
+               </div> 
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Purch_Cost</label>
+                     <input type="text" class="form-control bg-primary" name="purc_cost" value="{% for i in purchase %}{{i.purc_cost}} {% endfor %}" required>                 
+                  </div>
+               </div>
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Sale Price</label>
+                     <input type="text" class="form-control bg-primary" name="sale_price" value="{% for i in purchase %}{{i.sale_price}} {% endfor %}" required>                 
+                  </div>
+               </div>
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>MRP</label>
+                     <input type="text" class="form-control bg-primary" name="mrp" value="{% for i in purchase %}{{i.mrp}} {% endfor %}" required>                 
+                  </div>
+               </div>   
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Lot No.</label>
+                     <input type="text" class="form-control bg-primary" name="lot_no" value="{% for i in purchase %}{{i.lot_no}} {% endfor %}" required>                 
+                  </div>
+               </div> 
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Exp_Date</label>
+                     <input type="text" class="form-control bg-primary" name="exp_date" value="{% for i in purchase %}{{i.exp_date}} {% endfor %}" required>                 
+                  </div>
+               </div> 
+               <div class="col-sm-2">
+                  <div class="form-group">
+                     <label>Total Cost</label>
+                     <input type="text" class="form-control bg-primary" name="total_cost" value="{% for i in purchase %}{{i.total_cost}} {% endfor %}" required>                 
+                  </div>
+               </div> 
+               <div class="col-12">
+                  <button type="submit" class="col-sm-12 btn btn-primary my-3">Edit Supplier</button>
+               </div></div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}	

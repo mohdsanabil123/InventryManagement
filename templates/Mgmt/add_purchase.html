@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if (document.signup.pwd.value!=document.signup.cpwd.value)
+        {
+            alert('Password and Repeat Password fields does not match.');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="card shadow ">
+    <div class="card-body m-3">
+      <h1 class="text-center text-danger" style="border-top: 5px solid orange; border-bottom: 5px solid orange;">Purchase Action</h1>               
+        <div class="container-fluid">
+         <form method="post" action="{% url 'add_purchase' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               {% include 'includes/message.html' %}
+                  <div class="form-row">                     
+                    <div class="col-sm-9">
+                        <label>Supplier :</label>
+                           <select class="form-control bg-primary" name="supplier_id" required>
+                              <option>Select Supplier</option>
+                               {% for i in supplier %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                           </select>
+                     </div>
+                     <a href="{% url 'view_product' %}" class="btn btn-primary col-sm-3">View Product List</a>
+                     <div class="col-sm-3">
+                        <label>Product :</label>
+                           <select class="form-control bg-primary" name="product_id" required>
+                              <option>Select Product</option>
+                               {% for i in product %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                           </select>
+                     </div>
+                     
+                     <!-- <div class="col-sm-4">
+                        <label>Action By :</label>
+                           <select class="form-control" name="mgmt_id" required>
+                              <option>{{user.first_name}} {{ user.last_name }}</option>
+                               {% for i in mgmt %}
+                              <option value="{{i.id}}">{{user.first_name}} {{ user.last_name }}</option>
+                               {% endfor %}
+                           </select>
+                     </div> -->
+<br><br><br><br>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Price :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_price" placeholder="Write Purchase Price." required>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Qty :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_quantity" placeholder="Write Purchase Qty." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Cost :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_cost" placeholder="Write Purchase Cost." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Sale Price :</label>
+                           <input type="text" class="form-control bg-primary" name="sale_price" placeholder="Write Sale Price." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-1">
+                        <div class="form-group">
+                           <label>MRP :</label>
+                           <input type="text" class="form-control bg-primary" name="mrp" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Lot No. :</label>
+                           <input type="text" class="form-control bg-primary" name="lot_no" placeholder="Write MRP." required>
+                        </div>
+                     </div>
+                     
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Exp_date :</label>
+                           <input type="date" class="form-control bg-primary" name="exp_date" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     
+                     <div class="col-sm-4">
+                        <label>Product :</label>
+                           <select class="form-control bg-light" name="product_id" required>
+                              <option>Select Product</option>
+                               {% for i in product %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                           </select>
+                     </div>
+                     
+                     <!-- <div class="col-sm-4">
+                        <label>Action By :</label>
+                           <select class="form-control" name="mgmt_id" required>
+                              <option>{{user.first_name}} {{ user.last_name }}</option>
+                               {% for i in mgmt %}
+                              <option value="{{i.id}}">{{user.first_name}} {{ user.last_name }}</option>
+                               {% endfor %}
+                           </select>
+                     </div> -->
+<br><br><br><br>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Price :</label>
+                           <input type="text" class="form-control bg-light" name="purc_price" placeholder="Write Purchase Price." required>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Qty :</label>
+                           <input type="text" class="form-control bg-light" name="purc_quantity" placeholder="Write Purchase Qty." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Cost :</label>
+                           <input type="text" class="form-control bg-light" name="purc_cost" placeholder="Write Purchase Cost." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Sale Price :</label>
+                           <input type="text" class="form-control bg-light" name="sale_price" placeholder="Write Sale Price." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-1">
+                        <div class="form-group">
+                           <label>MRP :</label>
+                           <input type="text" class="form-control bg-light" name="mrp" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Lot No. :</label>
+                           <input type="text" class="form-control bg-light" name="lot_no" placeholder="Write MRP." required>
+                        </div>
+                     </div>
+                     
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Exp_date :</label>
+                           <input type="date" class="form-control bg-light" name="exp_date" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <div class="col-sm-3">
+                        <label>Product :</label>
+                           <select class="form-control bg-primary" name="product_id" required>
+                              <option>Select Product</option>
+                               {% for i in product %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                           </select>
+                     </div>
+                     
+                     <!-- <div class="col-sm-4">
+                        <label>Action By :</label>
+                           <select class="form-control" name="mgmt_id" required>
+                              <option>{{user.first_name}} {{ user.last_name }}</option>
+                               {% for i in mgmt %}
+                              <option value="{{i.id}}">{{user.first_name}} {{ user.last_name }}</option>
+                               {% endfor %}
+                           </select>
+                     </div> -->
+<br><br><br><br>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Price :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_price" placeholder="Write Purchase Price." required>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Qty :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_quantity" placeholder="Write Purchase Qty." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Purc Cost :</label>
+                           <input type="text" class="form-control bg-primary" name="purc_cost" placeholder="Write Purchase Cost." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Sale Price :</label>
+                           <input type="text" class="form-control bg-primary" name="sale_price" placeholder="Write Sale Price." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-1">
+                        <div class="form-group">
+                           <label>MRP :</label>
+                           <input type="text" class="form-control bg-primary" name="mrp" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Lot No. :</label>
+                           <input type="text" class="form-control bg-primary" name="lot_no" placeholder="Write MRP." required>
+                        </div>
+                     </div>
+                     
+                     <div class="col-sm-2">
+                        <div class="form-group">
+                           <label>Exp_date :</label>
+                           <input type="date" class="form-control bg-primary" name="exp_date" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     <div class="col-sm-12">
+                        <div class="form-group">
+                           <label>Total Cost :</label>
+                           <input type="text" class="form-control bg-primary" name="total_cost" placeholder="Write Expiry Date." required>
+                        </div>
+                     </div>
+                     
+                </div>
+                
+                <input type="submit" value="Add"  class="col-sm-12 btn btn-primary my-3">
+            
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

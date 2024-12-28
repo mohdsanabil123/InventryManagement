@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row card shadow ">
+   <div class="col-sm-12 m-3">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_product' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title text-danger"><span>Edit Product</span></h5>
+               </div>
+
+               {% include 'includes/message.html' %}
+               <div class="form-row">
+               <div class="col-sm-6">
+                  <div class="form-group">
+                     <label>Product</label>
+                     <input type="text" class="form-control bg-primary" name="name" value="{{product.name}}" required>
+                     <input type="text" class="form-control" name="product_id" value="{{product.id}}" hidden>
+                  </div>
+               </div>
+
+               <div class="col-sm-6">
+                  <div class="form-group">
+                     <label>Unit :</label>
+                     <input type="text" class="form-control bg-primary" name="unit" value="{{product.unit}}" required>
+                     <input type="text" class="form-control" name="product_id" value="{{product.id}}" hidden>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <div class="form-group">
+                     <label>Category :</label>
+                     <input type="text" class="form-control bg-primary" name="category" value="{{product.category}}" required>
+                     <input type="text" class="form-control" name="product_id" value="{{product.id}}" hidden>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <label>Status :</label>
+                     <select class="form-control bg-primary" name="status" required>
+                        <option>Active</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                     </select>
+               </div> 
+               <div class="col-12">
+                  <button type="submit" class="col-sm-12 btn btn-primary my-3">Edit Product</button>
+               </div></div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}	

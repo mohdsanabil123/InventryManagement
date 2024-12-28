@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row card shadow ">
+   <div class="col-sm-12 m-3">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_year' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Edit Year</span></h5>
+               </div>
+
+               {% include 'includes/message.html' %}
+
+               <div class="col-sm-12">
+                  <div class="form-group">
+                     <label>Year</label>
+                     <input type="text" class="form-control bg-primary" name="name" value="{{year.name}}" required>
+                     <input type="text" class="form-control" name="year_id" value="{{year.id}}" hidden>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <button type="submit" class="col-sm-12 btn btn-primary">Edit Year</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}	

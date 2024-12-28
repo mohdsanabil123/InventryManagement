@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+   function checkpassword()
+   {
+       if (document.signup.pwd.value!=document.signup.cpwd.value)
+       {
+           alert('Password and Repeat Password fields does not match.');
+           document.signup.cpwd.focus();
+           return false;
+       }
+       return true;
+   }
+</script>
+<div class="row card shadow bg-primary">
+   <div class="col-sm-12 m-3">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'add_month' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title text-danger"><span>Add Month :</span></h5>
+               </div>
+               {% include 'includes/message.html' %}
+               <div class="col-sm-12">
+                  <div class="form-group">
+                     <label>Month Name :</label>
+                     <input type="text" class="form-control bg-primary" name="month_name" placeholder="Write Month here." required>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <button type="submit" class="col-sm-12 btn btn-primary">Add Month</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}	

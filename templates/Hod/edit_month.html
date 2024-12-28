@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row card shadow ">
+   <div class="col-sm-12 m-3">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_month' %}" >
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Edit Month</span></h5>
+               </div>
+
+               {% include 'includes/message.html' %}
+
+               <div class="col-sm-12">
+                  <div class="form-group">
+                     <label>Month</label>
+                     <input type="text" class="form-control bg-primary" name="name" value="{{month.name}}" required>
+                     <input type="text" class="form-control" name="month_id" value="{{month.id}}" hidden>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <button type="submit" class="col-sm-12 btn btn-primary">Edit Month</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}	

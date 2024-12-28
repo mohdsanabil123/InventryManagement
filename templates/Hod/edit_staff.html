@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if (document.signup.pwd.value!=document.signup.cpwd.value)
+        {
+            alert('Password and Repeat Password fields does not match.');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="card shadow ">
+    <div class="card-body">
+      <h3 class="alert alert-primary text-center" style="border-top: 2px solid red; border-bottom: 2px solid red;">Edit Staff</h3>               
+        <div class="container-fluid">
+         <form method="post" action="{% url 'update_staff' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               {% include 'includes/message.html' %}
+                  <div class="form-row">
+                     <div class="col-sm-12">
+                        <div class="form-group">
+                           <label>Profile Pic</label>
+                           <input type="file" class="form-control bg-primary" name="profile_pic">
+                           <input type="text" class="form-control" name="staff_id" value="{% for i in staff %} {{i.admin.id}} {% endfor %}" hidden>
+                        </div>
+                     </div> 
+                    
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>First Name :</label>
+                           <input type="text" class="form-control bg-primary" name="first_name" value="{% for i in staff %}{{i.admin.first_name}} {% endfor %}">
+                        </div>
+                     </div> 
+
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Last Name :</label>
+                           <input type="text" class="form-control bg-primary" name="last_name" value="{% for i in staff %}{{i.admin.last_name}} {% endfor %}">
+                        </div>
+                     </div> 
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Mobile :</label>
+                           <input type="text" class="form-control bg-primary" name="mobile" value="{% for i in staff %}{{i.mobile}} {% endfor %}">
+                        </div>
+                     </div> 
+                     <div class="col-sm-6">
+                        <label class="text-danger">Status : *(Compulsary)</label>
+                           <select class="form-control bg-warning text-dark" name="status" required>
+                              <option>Active</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                           </select>
+                     </div> 
+                     <div class="col-sm-6">
+                        <label class="text-danger">Grade : *(Compulsary)</label>
+                           <select class="form-control bg-warning text-dark" name="grade_id" required>
+                              <option">Grade </option>
+                               {% for i in grade %}
+                              <option value="{{i.id}}">{{i.name}}</option>
+                               {% endfor %}
+                           </select>   
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Email :</label>
+                           <input type="text" class="form-control bg-primary" name="email" value="{% for i in staff %}{{i.admin.email}} {% endfor %}" required>
+                        </div>
+                     </div> 
+
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Username :</label>
+                           <input type="text" class="form-control bg-primary" name="username" value="{% for i in staff %}{{i.admin.username}} {% endfor %}" required>                              
+                        </div>
+                     </div> 
+
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Password :</label>
+                           <input type="password" class="form-control bg-primary" name="password" placeholder="Fill Only If You Want To Change Password." required>
+                        </div>
+                     </div> 
+
+                     
+
+                     <div class="col-sm-6">
+                        <label class="text-danger">Gender : *(Compulsary)</label>
+                           <select class="form-control bg-warning text-dark" name="gender" required>
+                              <option>Male</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Others">Others</option>
+                           </select>
+                     </div>
+
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Address :</label>
+                           <textarea class="form-control bg-primary" name="address" required>"{% for i in staff %}{{i.address}} {% endfor %}"</textarea>
+                        </div>
+                     </div> 
+
+                </div>
+                <input type="submit" value="Submit"  class="col-sm-12 btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function checkpassword()
+    {
+        if (document.signup.pwd.value!=document.signup.cpwd.value)
+        {
+            alert('Password and Repeat Password fields does not match.');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="card shadow ">
+    <div class="card-body m-3">
+      <h1 class="text-center text-danger" style="border-top: 2px solid red; border-bottom: 2px solid red;">Add Category</h1>               
+        <div class="container-fluid">
+         <form method="post" action="{% url 'add_category' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+               {% include 'includes/message.html' %}
+                  <div class="form-row">                     
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                           <label>Category :</label>
+                           <input type="text" class="form-control bg-primary" name="category_name" placeholder="Write Category here." required>
+                        </div>
+                     </div>                                      
+                     <div class="col-sm-6">
+                        <label>Status :</label>
+                           <select class="form-control bg-primary" name="category_status" required>
+                              <option>Active</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                           </select>
+                     </div>                                       
+                </div>                
+                <input type="submit" value="Add Category"  class="col-sm-12 btn btn-primary my-3">            
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
